@@ -56,6 +56,6 @@ members of the project's leadership or the teaching team of DSCI 522.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html and UBC Data Science 100 CoC, available at https://github.com/UBC-DSCI/dsci-100/blob/master/CODE_OF_CONDUCT.md.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html), version 1.4,
+and [UBC Data Science 100 CoC](https://github.com/UBC-DSCI/dsci-100/blob/master/CODE_OF_CONDUCT.md).
 
