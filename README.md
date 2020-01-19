@@ -2,7 +2,7 @@
 
 # Proposal: Credit application predictor
 
-Author(s): Clark Alistair, Dimri Aakanksha, Yue Jiang
+Author(s): Clark Alistair, Dimri Aakanksha, Jiang Yue
 
 Demo of a data analysis project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia.
 
