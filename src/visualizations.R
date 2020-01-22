@@ -11,9 +11,19 @@ Options:
 
 " -> doc
 
+### Ideas and to-dos
+# add inputs of categorical column names and numerical column names?
+# Approved as factor or continuous? I have both plots below
+# main function calls visualize_categorical once for eery feature
+# main function calls ggpairs once
+# main function MIGHT need to split data sets? Or select based on list of numerical/categorical?
+
+
 library(docopt)
 library(GGally)
 library(tidyverse)
+
+# Manual data cleaning that will be replaced with other script
 
 credit_data <- read_csv("data/raw.csv",
                         col_types = "icddccccdllilccdc",
@@ -39,21 +49,34 @@ credit_data <- read_csv("data/raw.csv",
 
 credit_data <- 
   credit_data %>% 
-  select(-X1)
+  select(-X1) %>% 
+  mutate(Approved = if_else(Approved == '+', 1, 0))
 
-visualize_categorical <- function(data, response, target) {
+# Categorical Features
+
+visualize_categorical <- function(data, response, predictor) {
   p <- 
-    ggplot(data, aes(x = {{target}})) +
+    ggplot(data, aes(x = {{predictor}})) +
     geom_bar() +
     labs(
       y = "Frequency",
-      title = paste0("Categorical variable: ", deparse(substitute(target)))) +
+      title = paste0("Categorical variable: ", deparse(substitute(predictor)))) +
     theme_bw() +
     facet_grid(rows = vars({{response}}))
-  ggsave(plot = p, filename = paste0("img/", deparse(substitute(target)), ".png"))
+  ggsave(plot = p, filename = paste0("img/", deparse(substitute(predictor)), ".png"))
 }
 
-visualize_categorical(credit_data, Approved, Sex)
+# Numerical Features
 
+num_data1 <- 
+  credit_data %>% 
+  select(c(Age, Debt, YearsEmployed, CreditScore, Income, Approved)) %>% 
+  mutate(Approved = as.factor(Approved))
 
-paste0(deparse(substitute(target)), ".png")
+ggpairs(num_data)
+
+num_data2 <- 
+  credit_data %>% 
+  select(c(Age, Debt, YearsEmployed, CreditScore, Income, Approved))
+
+ggpairs(num_data)
