@@ -1,5 +1,5 @@
 # author: Yue Jiang
-# date: 2020-01-20
+# date: 2020-01-21
 
 '''This script wrangles UCI Credit Approval data set and saves to a new file.
 
