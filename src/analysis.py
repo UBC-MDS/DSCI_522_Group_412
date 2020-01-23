@@ -3,7 +3,7 @@
 
 '''This script fits a model and outputs several images and csv reports
 
-    Usage: test.py --input1=<input1> --input2=<input2> --output=<output>
+    Usage: src/analysis.py --input1=<input1> --input2=<input2> --output=<output>
 
     Options:
     --input1=<input1>  Name of csv file to be treated as train set: must be within the /data directory.
