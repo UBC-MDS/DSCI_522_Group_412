@@ -2,11 +2,13 @@
 # date: 2020-01-22
 
 '''This script fits a model and outputs several images and csv reports
-Usage: src/analysis.py --input1=<input1> --input2=<input2> --output=<output>
-Options:
---input1=<input1>  Name of csv file to be treated as train set: must be within the /data directory.
---input2=<input2>  Name of csv file to be treated as test set: must be within the /data directory.
---output=<output>  Name of directory to be saved in, no slashes nesscesary, 'results' folder recommended.
+
+    Usage: test.py --input1=<input1> --input2=<input2> --output=<output>
+
+    Options:
+    --input1=<input1>  Name of csv file to be treated as train set: must be within the /data directory.
+    --input2=<input2>  Name of csv file to be treated as test set: must be within the /data directory.
+    --output=<output>  Name of directory to be saved in, no slashes nesscesary, 'results' folder recommended.
 '''
 
 import numpy as np
