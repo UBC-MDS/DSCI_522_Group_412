@@ -69,7 +69,7 @@ def main(input, output):
     df['Approved'] = df['Approved'].replace({'-': 0, '+': 1})
 
     # Save cleaned data to file
-    df.to_csv(r"./data/%s" % (output), index=False)
+    df.to_csv(r"./data/%s" % (output))
 
 
 if __name__ == "__main__":

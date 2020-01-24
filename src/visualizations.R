@@ -1,82 +1,76 @@
 # author: Alistair Clark
-# date: 2020-01-21
+# date: 2020-01-22
 
-"This script creates exploratory data visualizations.
+"Creates eda plots for the pre-processed training data from the credit approval data.
+Saves the plots as png files.
 
-Usage: visualizations.R --input_file<input_file> --output_file<output_file>
+Usage: src/visualizations.R --train=<train> --out_dir=<out_dir>
 
 Options:
---input_file<input_file>    A path/filename for the input data.
---output_file<output_file>  A path/filename for the created figure.
-
+--train=<train>      Path (including filename) to training data (which needs to be saved as a csv file).
+--out_dir=<out_dir> Path to directory where the figures will be saved.
 " -> doc
-
-### Ideas and to-dos
-# add inputs of categorical column names and numerical column names?
-# Approved as factor or continuous? I have both plots below
-# main function calls visualize_categorical once for eery feature
-# main function calls ggpairs once
-# main function MIGHT need to split data sets? Or select based on list of numerical/categorical?
-
 
 library(docopt)
 library(GGally)
 library(tidyverse)
+library(cowplot)
 
-# Manual data cleaning that will be replaced with other script
+opt <- docopt(doc)
 
-credit_data <- read_csv("data/raw.csv",
-                        col_types = "icddccccdllilccdc",
-                        col_names = c('X1',
-                                      'Sex',
-                                      'Age',
-                                      'Debt',
-                                      'Married',
-                                      'BankCustomer',
-                                      'EducationLevel',
-                                      'Ethnicity',
-                                      'YearsEmployed',
-                                      'PriorDefault',
-                                      'Employed',
-                                      'CreditScore',
-                                      'DriversLicense',
-                                      'Citizen',
-                                      'ZipCode',
-                                      'Income',
-                                      'Approved'),
-                        skip = 1
-                        )
-
-credit_data <- 
-  credit_data %>% 
-  select(-X1) %>% 
-  mutate(Approved = if_else(Approved == '+', 1, 0))
-
-# Categorical Features
-
-visualize_categorical <- function(data, response, predictor) {
-  p <- 
-    ggplot(data, aes(x = {{predictor}})) +
-    geom_bar() +
-    labs(
-      y = "Frequency",
-      title = paste0("Categorical variable: ", deparse(substitute(predictor)))) +
-    theme_bw() +
-    facet_grid(rows = vars({{response}}))
-  ggsave(plot = p, filename = paste0("img/", deparse(substitute(predictor)), ".png"))
+main <- function(train, out_dir) {
+  # load data
+  df <- read_csv("data/clean-train.csv")
+  categorical_cols = c('Sex',
+                       'Married',
+                       'BankCustomer',
+                       'EducationLevel',
+                       'Ethnicity',
+                       'DriversLicense',
+                       'Citizen',
+                       'Employed',
+                       'PriorDefault')
+  numerical_cols = c('Age',
+                     'Debt',
+                     'YearsEmployed',
+                     'CreditScore',
+                     'Income',
+                     'Approved')
+  
+  # Plot categorical features
+  plot_lst <- list()
+  for (col in categorical_cols) {
+    g <- visualize_categorical(df, Approved, col)
+    plot_lst[[col]] <- g
+  }
+  p1 <- plot_grid(plotlist = plot_lst)
+  
+  # Plot numerical features
+  num_data <- 
+    df %>% 
+    select(c(numerical_cols)) %>% 
+    mutate(Approved = as.factor(Approved))
+  p2 <- ggpairs(num_data)
+  
+  # Save figures
+  ggsave(plot = p1,
+         filename = paste0(out_dir,"categorical.png"),
+         width = 10,
+         height = 10)
+  ggsave(plot = p2,
+         filename = paste0(out_dir,"numerical.png"))
+  
 }
 
-# Numerical Features
 
-num_data1 <- 
-  credit_data %>% 
-  select(c(Age, Debt, YearsEmployed, CreditScore, Income, Approved)) %>% 
-  mutate(Approved = as.factor(Approved))
+visualize_categorical <- function(data, response, predictor) {
+  ggplot(data, aes(x = !!sym(predictor))) +
+  geom_bar() +
+  labs(
+    y = "Frequency",
+    title = predictor) +
+  theme_bw() +
+  facet_grid(cols = vars({{response}}))
+}
 
-ggpairs(num_data)
-
-num_data2 <- 
-  credit_data %>% 
-  select(c(Age, Debt, YearsEmployed, CreditScore, Income, Approved))
-
-ggpairs(num_data)
+main(opt[["--train"]], opt[["--out_dir"]])
