@@ -63,6 +63,16 @@ main <- function(train, out_dir) {
 }
 
 
+#' Plot categorical response variables vs. predictor
+#'
+#' @param data a dataframe
+#' @param response a column name
+#' @param predictor a column name
+#'
+#' @return a ggplot bar plot
+#'
+#' @examples
+#' visualize_categorical(df, Approved, col)
 visualize_categorical <- function(data, response, predictor) {
   ggplot(data, aes(x = !!sym(predictor))) +
   geom_bar() +
