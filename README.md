@@ -54,6 +54,8 @@ To replicate the analysis, clone this GitHub repository, install the dependencie
 ```python src/wrangle_df.py --input=train.csv --output=clean-train.csv```    
 ```python src/wrangle_df.py --input=test.csv --output=clean-test.csv```    
 
+```Rscript src/visualizations.R --train=clean-train.csv --out_dir='img/'```
+
 ## Dependencies
 Python 3.7.3 and Python packages:
 docopt==0.6.2 
