@@ -1,63 +1,44 @@
 Predicting Credit Card Approval
 ================
 
-  - [Summary](#summary)
-  - [Introduction](#introduction)
-  - [Methods](#methods)
-      - [Data](#data)
-      - [Analysis](#analysis)
-          - [Exploratory Analysis](#exploratory-analysis)
-          - [Model Analysis](#model-analysis)
-  - [Results and Discussion](#results-and-discussion)
-  - [References](#references)
-
 # Summary
 
 In this analysis, we attempted to build a classification model using
-decision tree and random forest model to predict whether a credit card
+decision tree and random forest models to predict whether a credit card
 application will be approved or rejected based on applicant’s personal
-information. We also attempted to identify the important features that
-can affect credit card application results. Our final model performs
-pretty well on the test dataset. Our final model is **Model**, and the
-test accuracy is **Accuracy**, with **Recall**, **Precision**, and **F1
-score**. There are **number of false positive** cases. When in reality
-these applicants should not be granted their credit card, but our model
-predicts that their application should be approved. This shows that
-there are still limitations on our model, and this kind of false
-positive cases could lead to severe credit default issues. Thus, we
-believe that there are still room for improvement for our prediction
-model before it can be launched into reality.
+information. Our final model performs pretty well on the test dataset.
+Our final model is **Model**, and the test accuracy is **Accuracy**,
+with **Recall**, **Precision**, and **F1 score**. There are **number of
+false positive** cases where applicants should not be granted their
+credit card, but our model predicts that their application should be
+approved. This shows that there are still limitations on our model, and
+this kind of false positive cases could lead to unwanted credit default
+issues. Thus, we believe that there are still room for improvement for
+our prediction model before it can be launched into reality.
 
 # Introduction
 
-Credit card approval has always been an important issue for banks and
-other financial institutions. It is hard to balance between profits from
-credit cards and credit default rate/risk control. If the institutions
-issue too less credit cards, their business performance may be affected.
-On the other hand, if the institutions issue too much credit cards,
-there could be potential credit bubble and high credit default rate.
-Thus, a model that can predict credit card approval will alleviate the
-burden of manual inspection and help financial institutions make more
-sensible decisions.
+Credit card approval is an important activity for banks and other
+financial institutions. If too few credit cards are issued, profits and
+business performance will suffer. On the other hand, if too many credit
+cards are issued, the institution could lose money from customer
+defaults on payments. Therefore, financial institutions use rigorous
+methods to decide whether to approve or deny a customer application. A
+model that can accurately predict credit card approval using customer
+application information would alleviate the burden of manual inspection
+and help financial institutions make more sensible decisions.
 
-For this project, we are attempting to answer two research questions:
+For this project, we are attempting to answer the following research
+question:
 
-1.  How does personal features such as age, marital status, income,
-    credit score, debt levels, lead to credit card application status?
-
-2.  Given certain personal features, will the person’s credit card
+1.  Given certain personal features, will the person’s credit card
     application be approved or not?
 
-It is important to answer these two questions since financial
-institutions receive numerous personal information when reviewing credit
-card applications, and they need to use the information to make informed
-decisions.
-
-In addition, as more and more people nowadays apply for credit cards, it
-would be a heavy burden for staff members of financial institutions to
-review all the applications manually. Hence, if there is a model
-performs well on credit card application prediction, those staff members
-will be freed from this tedious task and focus on other profit
+If we could accurately answer this question, financial insitutions would
+be able to provide faster and more accurate credit card approvals, while
+requiring less manual review work by employees. Hence, if there is a
+model performs well on credit card application prediction, those staff
+members will be freed from this tedious task and focus on other profit
 generating tasks.
 
 # Methods
@@ -74,19 +55,42 @@ information like age, sex, educational level, income, and so on. The
 last column of the dataset is the target variable, indicating whether
 the application is approved or not.
 
+**Note:** In order to protect confidentiality of the data, all attribute
+names and values in the dataset were changed to meaningless symbols. We
+chose to add feature names to the dataset (shown below) to increase the
+readability of this report, but these names and values should not be
+interpreted literally. The feature names (e.g. Age, YearsEmployed) were
+chosen based on examples from others who have analyzed the same dataset.
+
 ## Analysis
 
 ### Exploratory Analysis
 
-In the exploratory analysis part, for numerical variables we reviewed
-the correlation between numerical variables and the target variable.
-![numerical plot](../img/numerical.png) Figure 1 The correlation between
-numerical variables and the target variable
+The dataset contains a nice mix of numerical and categorical features.
+The below plot shows an analysis of the correlation between our
+numerical variables and the target variable. ![numerical
+plot](../img/numerical.png) Figure 1 The correlation between numerical
+variables and the target variable
 
-For categorical variables, we plotted bar plot of categorical variables
-against the target variable. ![categorical plot](../img/categorical.png)
-Figure 2 The correlation between categorical variables and the target
-variable
+**Observations from Figure 1:**
+
+  - There is not high collinearity between any pair of predictors
+  - The dataset is well balanced, with a ~60:40 split between the two
+    prediction classes
+  - The boxplots show that many of the variables appear useful for
+    predicting the correct class
+
+For categorical variables, we plotted bar plot of each predictor against
+the target variable. ![categorical plot](../img/categorical.png) Figure
+2 The correlation between categorical variables and the target variable
+
+**Observations from Figure 2:**
+
+  - `Employed` and `PriorDefault` appear to be very strong predictors of
+    the response class
+  - Certain categories in `EducationLevel` and `Ethnicity` are also
+    differentiated between the two classes
+  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
 
 ### Model Analysis
 
@@ -108,7 +112,7 @@ The code for this project can be found here:
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references">
 
 <div id="ref-docopt">
 
