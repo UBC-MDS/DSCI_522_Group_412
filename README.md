@@ -59,7 +59,7 @@ Python 3.7.3 and Python packages:
 docopt==0.6.2 
 requests==2.22.0  
 pandas==0.24.2   
-pandas_profiling==2.4.0 .  
+pandas_profiling==2.4.0 
 
 
 **Data Source:** Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
