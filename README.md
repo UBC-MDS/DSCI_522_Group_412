@@ -56,6 +56,8 @@ To replicate the analysis, clone this GitHub repository, install the dependencie
 
 ```Rscript src/visualizations.R --train=clean-train.csv --out_dir='img/'```
 
+``` python src/analysis.py --input1=<clean-train.csv> --input2=<clean-test.csv> --output=<results> ```
+
 ## Dependencies
 Python 3.7.3 and Python packages:
 docopt==0.6.2 
