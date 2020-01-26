@@ -97,7 +97,7 @@ kable(df)
 
 Our model did well on the test data with auc score of 0.92 and an overall accuracy of 0.81. Though we obtained a high auc score and accuracy, we obtained a low precision (=0.72). This could further be observed from the confusion matrix plot, where we have a high number of false positive cases (=22), i.e. predicting rejected application as successful. Given the implications for the customers and the banks, this model is not good enough to implement in industry.
 
-```{r confusion matrix, echo=FALSE, fig.cap="Figure 1. Confusion matrix for final model. ", out.width = '60%'}
+```{r confusion matrix, echo=FALSE, fig.cap="Figure 3. Confusion matrix for final model. ", out.width = '60%'}
 knitr::include_graphics("../results/roc.png")
 ```
 To further improve the model's performance in the future, we have the following suggestions:

@@ -161,11 +161,11 @@ model is not good enough to implement in industry.
 
 <div class="figure">
 
-<img src="../results/roc.png" alt="Figure 1. Confusion matrix for final model. " width="60%" />
+<img src="../results/roc.png" alt="Figure 3. Confusion matrix for final model. " width="60%" />
 
 <p class="caption">
 
-Figure 1. Confusion matrix for final model.
+Figure 3. Confusion matrix for final model.
 
 </p>
 
