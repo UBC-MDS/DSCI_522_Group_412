@@ -51,10 +51,10 @@ To replicate the analysis, clone this GitHub repository, install the dependencie
 ## Dependencies
 Python 3.7.3 and Python packages:
 
-docopt==0.6.2 
-requests==2.22.0  
-pandas==0.24.2   
-scikit-learn==0.22.1
+docopt==0.6.2     
+requests==2.22.0     
+pandas==0.24.2      
+scikit-learn==0.22.1 .    
 
 
 **Data Source:** Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
