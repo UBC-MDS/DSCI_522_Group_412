@@ -1,17 +1,31 @@
 Predicting Credit Card Approval
 ================
 
+  - [Summary](#summary)
+  - [Introduction](#introduction)
+  - [Methods](#methods)
+      - [Data](#data)
+      - [Analysis](#analysis)
+          - [Exploratory Analysis](#exploratory-analysis)
+          - [Model Analysis](#model-analysis)
+  - [Results and Discussion](#results-and-discussion)
+  - [References](#references)
+
 # Summary
 
-In this analysis, we attempted to build a classification model using
-decision tree and random forest models to predict whether a credit card
-application will be approved or rejected based on applicant’s personal
-information. Our final model performs pretty well on the test dataset.
-Our final model is Random Forest, and the **test accuracy is 0.81**,
-with **test recall = 0.93**, **test auc = 0.92** and **test F1 score = *0.811*. There are **22** false positive cases where applicants were not granted their credit card, but our model predicts that their application was approved. This indicates that there are still limitations on our model, and
-this kind of false positive cases could lead to unwanted credit default
-issues. Thus, we believe that there are still room for improvement for
-our prediction model before it can be launched.
+In this analysis, we attempted to build a classification model based on
+decision trees models, combined with ensemble and boosting methods to
+predict whether a credit card application will be approved or rejected
+based on applicant’s personal information. Our final model performs
+pretty well on the test dataset. Our final model is Random Forest, and
+the **test accuracy is 0.81**, with **test recall = 0.93**, **test auc =
+0.92** and **test F1 score = 0.811**. There are **22** false positive
+cases where applicants were not granted their credit card, but our model
+predicts that their application was approved. This indicates that there
+are still limitations on our model, and this kind of false positive
+cases could lead to unwanted credit default issues. Thus, we believe
+that there are still room for improvement for our prediction model
+before it can be launched.
 
 # Introduction
 
@@ -54,7 +68,8 @@ names and values in the dataset were changed to meaningless symbols. We
 chose to add feature names to the dataset (shown below) to increase the
 readability of this report, but these names and values should not be
 interpreted literally. The feature names (e.g. Age, YearsEmployed) were
-chosen based on examples from others who have analyzed the same dataset.
+chosen based on examples from Deepesh Khaneja (Khaneja 2017), who
+analyzed the same dataset.
 
 ## Analysis
 
@@ -69,7 +84,7 @@ variables and the target variable
 **Observations from Figure 1:**
 
   - There is not high collinearity between any pair of predictors
-  - The dataset is well balanced, with a ~60:40 split between the two
+  - The dataset is well balanced, with a \~60:40 split between the two
     prediction classes
   - The boxplots show that many of the variables appear useful for
     predicting the correct class
@@ -84,46 +99,92 @@ the target variable. ![categorical plot](../img/categorical.png) Figure
     the response class
   - Certain categories in `EducationLevel` and `Ethnicity` are also
     differentiated between the two classes
-  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
+  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
 
 ### Model Analysis
 
-Since the results our preliminary EDA were inconclusive, at this stage of our project, we decided to focus our efforts in improving the performance of our final model instead of attempting to draw inferences with regards to feature importance. We choose to use xgboost, lgbm and random forest classifier(s) because these models can handle both numerical variables and categorical
-variables well. Random forest was used to build a classification model to predict whether a credit card application would be approved or rejected. All variables included in the original data set, were used to fit the model.
-
-The hyperparameter(s) namely no. of estimators, maximum depth and scoring criterion (Gini/Entropy) were chosen using 3 fold stratified cross validation. The R (R Core Team 2019) and Python (Van Rossum and Drake 2009) programming languages, and the following R and Python packages were used to perform this analysis: docopt(de Jonge 2018), knitr (Xie 2014), tidyverse (Wickham 2017), Pandas (McKinney 2010), and scikit-learn (Pedregosa et al. 2011). The code for this project can be found here:
+Since the results our preliminary EDA were inconclusive, at this stage
+of our project, we decided to focus our efforts in improving the
+performance of our final model instead of attempting to draw inferences
+with regards to feature importance. We choose to use xgboost, lgbm and
+random forest classifier(s) because these models can handle both
+numerical variables and categorical variables well. Random forest was
+used to build a classification model to predict whether a credit card
+application would be approved or rejected. All variables included in the
+original data set, were used to fit the model. The hyperparameter(s)
+namely no. of estimators, maximum depth and scoring criterion
+(Gini/Entropy) were chosen using 3 fold stratified cross validation. The
+R (R Core Team 2019) and Python (Van Rossum and Drake 2009) programming
+languages, and the following R and Python packages were used to perform
+this analysis: docopt(de Jonge 2018), knitr (Xie 2014), tidyverse
+(Wickham 2017), Pandas (McKinney 2010), and scikit-learn (Pedregosa et
+al. 2011). The code for this project can be found here:
 <https://github.com/UBC-MDS/DSCI_522_Group_412>.
 
 # Results and Discussion
 
-As the first step, we chose to run all three ensemble methods namely, xgboost, lgbm and Random forest on our processed training data. A comparison was done on the basis of train and test accuracy and run time. Random forest outperformed xgboost and lgbm in terms of all three criterion with train accuracy = 0.995 , test accuracy = 0.826 and run time = 0.2259 (sec) (Table 1).
-```{r table, echo=FALSE}
-df <- read_csv("../results/model_compare.csv")
-knitr::kable(df)
-```
-We obtained a very high value for train accuracy, which could be an indication that our model is overfitting. To tackle this, we performed 3-fold stratified cross validation to perfomr hyperparameter optimisation. At this stage, to assess our model's performance, apart from test and train accuracies we obtained the model's recall, precision, and auc score on the test data. (Table 2).
-```{r table, echo=FALSE}
-df <- read_csv("../results/accuracy_report.csv")
-knitr::kable(df)
-```
-Our model did well on the test data with auc score of 0.92 and an overall accuracy of 0.81. Though we obtained a high auc score and accuracy, we obtained a low precision (=0.72). This could further be observed from the confusion matrix plot, where we have high number of false positive cases (=22), i.e. predicting rejected application as successful. Given the implications this has for the customers and the banks, this model is not good enough to yet implement in industry.
+As the first step, we chose to run the boosting methods and ensemble
+methods namely, xgboost, lgbm and random forest on our processed
+training data. A comparison was done on the basis of train and test
+accuracy and run time. Random forest outperformed xgboost and lgbm in
+terms of all three criterion with train accuracy = 0.995, test accuracy
+= 0.826 and run time = 0.2259 (sec) (Table 1).
 
-```{r confusion matrix, echo=FALSE, fig.cap="Figure 1. Confusion matrix for final model. ", out.width = '60%'}
-knitr::include_graphics("../results/roc.png")
-```
-To further improve the model's performance in future, we have the following suggestions:
-- We observed overfitting (i.e. extremely high training accuracies with and without hyperparamter optimisation). This could be alleviated with more data which would enable us to perform training, validation and testing
-- With the task in hand, the 22 misclassified observation(s) need to be aanalysed appropriately. We could compare these to the correct classifications (from both classes) to identify which feature(s) are driving the mis classification. Also, with the help of domain experts, feature engineering could be used to improve the model's precision. 
+| Index | Category       | random forest | xgboost |   lgbm |
+| ----: | :------------- | ------------: | ------: | -----: |
+|     0 | Train accuracy |        0.9950 |  0.9130 | 0.9380 |
+|     1 | Test accuracy  |        0.8260 |  0.7900 | 0.7830 |
+|     2 | Run time       |        0.2259 |  0.6211 | 0.1607 |
 
+We obtained a very high value for train accuracy, which could be an
+indication that our model is overfitting. To tackle this, we performed
+3-fold stratified cross validation to perform hyperparameter
+optimisation. At this stage, to assess our model’s performance, apart
+from test and train accuracies we obtained the model’s recall,
+precision, and auc score on the test data. (Table 2).
+
+| X1             |    result |
+| :------------- | --------: |
+| test accuracy  | 0.8115942 |
+| train accuracy | 0.9293478 |
+| test recall    | 0.9333333 |
+| test precision | 0.7179487 |
+| auc score      | 0.9209402 |
+
+Our model did well on the test data with auc score of 0.92 and an
+overall accuracy of 0.81. Though we obtained a high auc score and
+accuracy, we obtained a low precision (=0.72). This could further be
+observed from the confusion matrix plot, where we have a high number of
+false positive cases (=22), i.e. predicting rejected application as
+successful. Given the implications for the customers and the banks, this
+model is not good enough to implement in industry.
+
+<div class="figure">
+
+<img src="../results/roc.png" alt="Figure 3. Confusion matrix for final model. " width="60%" />
+
+<p class="caption">
+
+Figure 3. Confusion matrix for final model.
+
+</p>
+
+</div>
+
+To further improve the model’s performance in the future, we have the
+following suggestions: - We observed overfitting (i.e. extremely high
+training accuracies with and without hyperparameter optimisation). This
+could be alleviated with more data which would enable us to perform
+training, validation and testing - with the task in hand, the 22
+misclassified observation(s) need to be analyzed appropriately. We could
+compare these to the correct classifications (from both classes) to
+identify which feature(s) are driving the misclassification.
+Additionally, with the help of domain experts, feature engineering could
+be used to improve the model’s precision.
 
 # References
 
-
-
-
-# References
-
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 
 <div id="ref-docopt">
 
@@ -138,6 +199,12 @@ Dua, D. and Graff, C. 2019. *Credit Approval Data Set*. Irvine, CA:
 University of California, School of Information; Computer Science: UCI
 Machine Learning Repository.
 <https://archive.ics.uci.edu/ml/datasets/Credit+Approval>.
+
+</div>
+
+<div id="ref-Deepesh">
+
+Khaneja, Deepesh. 2017. “Credit Approval Analysis Using R.”
 
 </div>
 
