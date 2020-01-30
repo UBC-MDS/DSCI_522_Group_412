@@ -1,16 +1,6 @@
 Predicting Credit Card Approval
 ================
 
-  - [Summary](#summary)
-  - [Introduction](#introduction)
-  - [Methods](#methods)
-      - [Data](#data)
-      - [Analysis](#analysis)
-          - [Exploratory Analysis](#exploratory-analysis)
-          - [Model Analysis](#model-analysis)
-  - [Results and Discussion](#results-and-discussion)
-  - [References](#references)
-
 # Summary
 
 In this analysis, we attempted to build a classification model based on
@@ -84,7 +74,7 @@ variables and the target variable
 **Observations from Figure 1:**
 
   - There is not high collinearity between any pair of predictors
-  - The dataset is well balanced, with a \~60:40 split between the two
+  - The dataset is well balanced, with a ~60:40 split between the two
     prediction classes
   - The boxplots show that many of the variables appear useful for
     predicting the correct class
@@ -99,7 +89,7 @@ the target variable. ![categorical plot](../img/categorical.png) Figure
     the response class
   - Certain categories in `EducationLevel` and `Ethnicity` are also
     differentiated between the two classes
-  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
+  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
 
 ### Model Analysis
 
@@ -130,11 +120,11 @@ accuracy and run time. Random forest outperformed xgboost and lgbm in
 terms of all three criterion with train accuracy = 0.995, test accuracy
 = 0.826 and run time = 0.2259 (sec) (Table 1).
 
-| Index | Category       | random forest | xgboost |   lgbm |
-| ----: | :------------- | ------------: | ------: | -----: |
-|     0 | Train accuracy |        0.9950 |  0.9130 | 0.9380 |
-|     1 | Test accuracy  |        0.8260 |  0.7900 | 0.7830 |
-|     2 | Run time       |        0.2259 |  0.6211 | 0.1607 |
+| X1 | random forest | xgboost |   lgbm |
+| -: | ------------: | ------: | -----: |
+|  0 |        0.9960 |  0.9280 | 0.9420 |
+|  1 |        0.8040 |  0.8120 | 0.7830 |
+|  2 |        0.3468 |  0.9812 | 0.2732 |
 
 We obtained a very high value for train accuracy, which could be an
 indication that our model is overfitting. To tackle this, we performed
@@ -145,11 +135,11 @@ precision, and auc score on the test data. (Table 2).
 
 | X1             |    result |
 | :------------- | --------: |
-| test accuracy  | 0.8115942 |
-| train accuracy | 0.9293478 |
-| test recall    | 0.9333333 |
-| test precision | 0.7179487 |
-| auc score      | 0.9209402 |
+| test accuracy  | 0.8043478 |
+| train accuracy | 0.9963768 |
+| test recall    | 0.7313433 |
+| test precision | 0.8448276 |
+| auc score      | 0.8607316 |
 
 Our model did well on the test data with auc score of 0.92 and an
 overall accuracy of 0.81. Though we obtained a high auc score and
@@ -157,7 +147,8 @@ accuracy, we obtained a low precision (=0.72). This could further be
 observed from the confusion matrix plot, where we have a high number of
 false positive cases (=22), i.e. predicting rejected application as
 successful. Given the implications for the customers and the banks, this
-model is not good enough to implement in industry.
+model is not good enough to implement in
+industry.
 
 <div class="figure">
 
@@ -184,7 +175,7 @@ be used to improve the model’s precision.
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references">
 
 <div id="ref-docopt">
 
