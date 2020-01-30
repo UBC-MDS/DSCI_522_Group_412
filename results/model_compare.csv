@@ -1,4 +1,4 @@
-Index,Category,random forest,xgboost,lgbm
-0,Train accuracy,0.995,0.913,0.938
-1,Test accuracy,0.826,0.79,0.783
-2,Run time,0.2259,0.6211,0.1607
+,random forest,xgboost,lgbm
+0,0.996,0.928,0.942
+1,0.804,0.812,0.783
+2,0.3468,0.9812,0.2732
