@@ -93,7 +93,7 @@ def main (input1,input2,output):
         
     
     model_compare_dataframe = pd.DataFrame(results_dict)
-    model_compare_dataframe.to_csv(f'./{output}/model_compare')
+    model_compare_dataframe.to_csv(output + "model_compare.csv")
 
     
     ### Hyper parameter optimisation for Random Forest
@@ -125,13 +125,14 @@ def main (input1,input2,output):
     accuracies_df = pd.DataFrame(index=['test accuracy', 'train accuracy', 'test recall', 'test precision', 'auc score'], data={
         'result': [test_accuracy, train_accuracy, test_recall, test_precision, auc_score]
     })
-    accuracies_df.to_csv(f'./{output}/accuracy_report')
+    accuracies_df.to_csv(output + "accuracy_report.csv")
 
     # plot and report confusion matrix
     plot_confusion_matrix(best_model, X_test, y_test)
     report = classification_report(y_test, test_predictions, output_dict=True)
     report_df = pd.DataFrame(report)
-    report_df.to_csv(f'./{output}/classification_report')
+    report_df.to_csv(output + "classification_report.csv")
+    
 
     # compute and save roc curve
     fpr, tpr, thresholds = roc_curve(
