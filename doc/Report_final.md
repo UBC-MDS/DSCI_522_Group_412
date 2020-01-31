@@ -122,9 +122,9 @@ terms of all three criterion with train accuracy = 0.995, test accuracy
 
 | X1 | random forest | xgboost |   lgbm |
 | -: | ------------: | ------: | -----: |
-|  0 |        0.9960 |  0.9280 | 0.9420 |
-|  1 |        0.8040 |  0.8120 | 0.7830 |
-|  2 |        0.3468 |  0.9812 | 0.2732 |
+|  0 |        0.9950 |  0.9150 | 0.9400 |
+|  1 |        0.8840 |  0.8840 | 0.8550 |
+|  2 |        0.2255 |  0.6461 | 0.1877 |
 
 We obtained a very high value for train accuracy, which could be an
 indication that our model is overfitting. To tackle this, we performed
@@ -135,11 +135,11 @@ precision, and auc score on the test data. (Table 2).
 
 | X1             |    result |
 | :------------- | --------: |
-| test accuracy  | 0.8043478 |
-| train accuracy | 0.9963768 |
-| test recall    | 0.7313433 |
-| test precision | 0.8448276 |
-| auc score      | 0.8607316 |
+| test accuracy  | 0.8913043 |
+| train accuracy | 0.9909420 |
+| test recall    | 0.8833333 |
+| test precision | 0.8688525 |
+| auc score      | 0.9000000 |
 
 Our model did well on the test data with auc score of 0.92 and an
 overall accuracy of 0.81. Though we obtained a high auc score and
