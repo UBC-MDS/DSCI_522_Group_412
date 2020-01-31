@@ -45,9 +45,29 @@ opt = docopt(__doc__)
 # Code attribution for function get_scores: DSCI 571, Lecture 8
 def get_scores(model, 
                 X_train, y_train,
-                X_test, y_test, 
-                show = True
-               ):   
+                X_test, y_test
+               ):
+    """
+    Returns train and test accuracy given a model
+    train and test X and y portions
+    Parameters:
+    ----------
+    model: sklearn classifier model
+        The sklearn model
+    X_train: numpy.ndarray        
+        The X part of the train set
+    y_train: numpy.ndarray
+        The y part of the train set    
+    X_test: numpy.ndarray        
+        The X part of the test set
+    y_valid: numpy.ndarray
+        The y part of the test set    
+    Returns
+    -------
+        train_score: float
+        test_score: float
+            
+    """              
     return (model.score(X_train, y_train)), (model.score(X_test, y_test))
 
 
@@ -87,7 +107,7 @@ def main (input1,input2,output):
         clf = Pipeline(steps=[('classifier', model)])
         clf.fit(X_train, y_train);
         train_score, test_score = get_scores(clf, X_train, y_train, 
-                                       X_test, y_test, show = False)
+                                       X_test, y_test)
         elapsed_time = time.time() - t
         results_dict[model_name] = [round(train_score,3), round(test_score,3), round(elapsed_time,4)]
         
