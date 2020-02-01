@@ -24,16 +24,8 @@ For our analysis we took the following steps:
 - Perform data transformations like appropriate handling of missing values, standardising numerical features, encoding categorical features etc.
 - Apply predictive classification models to answer the research question, including Random Forests, XGBoost, and LGBM.
 
-## Results
-
-To communicate the results effectively we plan to provide tables of the the following ouput:
-- AUC scores
-- Precision and Recall
-- any other relevant metric
-
-In addition we plan to show the following figure:
-
-- Confusion Matrix plot
+## Final Report
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_412/blob/master/doc/Report_final.md)
 
 ## Usage
 
@@ -48,6 +40,8 @@ To reset this repository to a clean state, run the following command at the comm
 ```
 make clean
 ```
+
+A full script of this analysis can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_412/tree/master/src)
 
 ## Dependencies
 Python 3.7.3 and Python packages:
@@ -70,6 +64,7 @@ R version 3.6.1 and R packages:
 
 GNU make 3.81
 
+## References
 **Data Source:**    
 Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
