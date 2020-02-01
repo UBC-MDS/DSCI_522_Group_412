@@ -21,6 +21,12 @@ def main(input, output):
     # download xls to pandas dataframe
     df = pd.read_csv(f"./data/{input}")
 
+    # test that the data is a pandas data frame object
+    assert isinstance(df, pd.core.frame.DataFrame)
+    
+    #test that the data frame has 16 features columns and 1 index column
+    assert len(df.columns) == 17
+
     # drop unecessary index column
     df = df.drop(df.columns[0], 1)
 
@@ -45,7 +51,6 @@ def main(input, output):
 
     df.columns = new_col_names
 
-
     # Dealing with missing data identified as "?"
     df = df.replace('?', np.nan)
 
@@ -67,6 +72,9 @@ def main(input, output):
 
     # Change target to 0 and 1
     df['Approved'] = df['Approved'].replace({'-': 0, '+': 1})
+
+    # Make sure the target only contains values 0 or 1
+    assert df['Approved'].isin([0, 1]).all()
 
     # Save cleaned data to file
     df.to_csv(r"./data/%s" % (output), index=False)
