@@ -8,7 +8,7 @@ Demo of a data analysis project for DSCI 522 (Data Science workflows); a course 
 
 ## Motivation and Research question
 
-Algorithms are used on an everyday basis to decide the outcome of credit applications. The purpose of our analysis is to answer the question: **"Given certain personal features, will the person’s credit card application be approved or not?"**
+As the number of credit card applications increases dramatically these days, it would alleviate the burden of personals of financial institutions, if a well-trained algorithm can predict credit card application results. The purpose of our analysis is to answer the question: **"Given certain personal features, will the person’s credit card application be approved or not?"**
 
 ## Description of the Data
 
@@ -25,7 +25,7 @@ For our analysis we took the following steps:
 - Apply predictive classification models to answer the research question, including Random Forests, XGBoost, and LGBM.
 
 ## Final Report
-The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_412/blob/master/doc/Report_final.md)
+The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_412/blob/master/doc/Report_final.md).
 
 ## Usage
 
@@ -41,7 +41,7 @@ To reset this repository to a clean state, run the following command at the comm
 make clean
 ```
 
-A full script of this analysis can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_412/tree/master/src)
+Full scripts of this analysis can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_412/tree/master/src).
 
 ## Dependencies
 Python 3.7.3 and Python packages:
