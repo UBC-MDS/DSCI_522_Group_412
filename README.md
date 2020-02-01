@@ -39,23 +39,32 @@ In addition we plan to show the following figure:
 
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
-```python src/download_data.py --url='http://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.data' --file_path='data/raw.csv'```
+```make all```
 
-```python src/wrangle_df.py --input=train.csv --output=clean-train.csv```    
-```python src/wrangle_df.py --input=test.csv --output=clean-test.csv```    
+To reset this repository to a clean state, run the following command at the command line/terminal from the root directory of this project:
 
-```Rscript src/visualizations.R --train=clean-train.csv --out_dir='img/'```
-
-``` python src/analysis.py --input1=clean-train.csv --input2=clean-test.csv --output='results/' ```
+```make clean```
 
 ## Dependencies
 Python 3.7.3 and Python packages:
 
-docopt==0.6.2     
-requests==2.22.0     
-pandas==0.24.2      
-scikit-learn==0.22.1 .    
+- docopt==0.6.2     
+- requests==2.22.0     
+- pandas==0.24.2  
+- pandas-profiling 2.3.0
+- numpy==1.17.2
+- scikit-learn==0.22.1 
+- lightgbm==2.3.2
+- altair==3.2.0
+- xgboost==0.90
 
+R version 3.6.1 and R packages:    
+- knitr==1.27.2
+- tidyverse==1.2.1
+- GGally==1.4.0
+- cowplot==1.0.0
+
+GNU make 3.81
 
 **Data Source:** Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
