@@ -39,11 +39,15 @@ In addition we plan to show the following figure:
 
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
-```make all```
+```
+make all
+```
 
 To reset this repository to a clean state, run the following command at the command line/terminal from the root directory of this project:
 
-```make clean```
+```
+make clean
+```
 
 ## Dependencies
 Python 3.7.3 and Python packages:
@@ -66,5 +70,6 @@ R version 3.6.1 and R packages:
 
 GNU make 3.81
 
-**Data Source:** Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+**Data Source:**    
+Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
