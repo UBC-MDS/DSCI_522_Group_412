@@ -34,7 +34,7 @@ def main(url, out_dir):
 
     # Read csv and split into train and test
     df = pd.read_csv(url, header=None)
-    train_df, test_df = train_test_split(df, test_size = 0.2)
+    train_df, test_df = train_test_split(df, test_size = 0.2, random_state=42)
 
     # Write train and test .csv files
     try:
