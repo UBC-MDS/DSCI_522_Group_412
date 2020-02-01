@@ -92,13 +92,13 @@ def main (input1,input2,output):
     y_test = y_test.to_numpy().ravel()
 
     
-
-    #empty dictionary to store results
+    ## Running models with default parameters
+    # empty dictionary to store results
     results_dict = {}
     models = {
-          'random forest' : RandomForestClassifier(), 
-          'xgboost' : XGBClassifier(),
-          'lgbm': LGBMClassifier()
+          'random forest' : RandomForestClassifier(random_state=23), 
+          'xgboost' : XGBClassifier(random_state=23),
+          'lgbm': LGBMClassifier(random_state=23)
          }
 
     for model_name, model in models.items():
@@ -111,12 +111,12 @@ def main (input1,input2,output):
         elapsed_time = time.time() - t
         results_dict[model_name] = [round(train_score,3), round(test_score,3), round(elapsed_time,4)]
         
-    
+    ## Storing results of default model settings
     model_compare_dataframe = pd.DataFrame(results_dict)
     model_compare_dataframe.to_csv(output + "model_compare.csv")
 
     
-    ### Hyper parameter optimisation for Random Forest
+    ### Hyper parameter optimisation for chosen model ie. Random Forest
     hyper_parameters = [
         {
         'n_estimators': [3, 5, 10, 50, 100],
@@ -126,7 +126,7 @@ def main (input1,input2,output):
     ]
     
     clf = GridSearchCV(
-    RandomForestClassifier(),
+    RandomForestClassifier(random_state=23),
         hyper_parameters,
         cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=23),
         verbose=0
@@ -134,7 +134,7 @@ def main (input1,input2,output):
     best_model = clf.fit(X_train, y_train)
     
 
-    # Measure accuracies
+    # Measure accuracies on test and train data
     train_predictions = best_model.predict(X_train)
     train_accuracy = accuracy_score(y_train, train_predictions)
     test_predictions = best_model.predict(X_test)
@@ -147,14 +147,14 @@ def main (input1,input2,output):
     })
     accuracies_df.to_csv(output + "accuracy_report.csv")
 
-    # plot and report confusion matrix
+    # plot and report confusion matrix for test data
     plot_confusion_matrix(best_model, X_test, y_test)
     report = classification_report(y_test, test_predictions, output_dict=True)
     report_df = pd.DataFrame(report)
     report_df.to_csv(output + "classification_report.csv")
     
 
-    # compute and save roc curve
+    # compute and save roc curve for test data
     fpr, tpr, thresholds = roc_curve(
         y_test, best_model.predict_proba(X_test)[:, 1])
     plt.plot(fpr, tpr)
