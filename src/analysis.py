@@ -6,8 +6,8 @@
     Usage: src/analysis.py --input1=<input1> --input2=<input2> --output=<output>
 
     Options:
-    --input1=<input1>  Name of csv file to be treated as train set: must be within the /data directory.
-    --input2=<input2>  Name of csv file to be treated as test set: must be within the /data directory.
+    --input1=<input1>  Path (including filename) to training data (which needs to be saved as a csv file).
+    --input2=<input2>  Path (including filename) to testing data (which needs to be saved as a csv file).
     --output=<output>  Name of directory to be saved in, no slashes nesscesary, 'results' folder recommended.
 '''
 
@@ -74,8 +74,8 @@ def get_scores(model,
 def main (input1,input2,output):
 
     # Read wrangled csv files
-    df_train = pd.read_csv(f"./data/{input1}")
-    df_test = pd.read_csv(f"./data/{input2}")
+    df_train = pd.read_csv(input1)
+    df_test = pd.read_csv(input2)
     X_train = df_train.drop(['Approved'], 1)
     y_train = df_train[['Approved']]
     X_test = df_test.drop(['Approved'], 1)
@@ -157,9 +157,9 @@ def main (input1,input2,output):
     # compute and save roc curve for test data
     fpr, tpr, thresholds = roc_curve(
         y_test, best_model.predict_proba(X_test)[:, 1])
-    plt.plot(fpr, tpr)
+    # plt.plot(fpr, tpr)
     plt.title('ROC report')
-    plt.plot((0, 1), (0, 1), '--k')
+    # plt.plot((0, 1), (0, 1), '--k')
     plt.xlabel('false positive rate')
     plt.ylabel('true positive rate')
     plt.savefig(f'./{output}/roc.png')
