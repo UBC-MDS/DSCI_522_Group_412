@@ -55,6 +55,7 @@ Python 3.7.3 and Python packages:
 - lightgbm==2.3.2
 - altair==3.2.0
 - xgboost==0.90
+- matplotlib==3.1.1
 
 R version 3.6.1 and R packages:    
 - knitr==1.27.2
