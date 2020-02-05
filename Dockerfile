@@ -12,25 +12,28 @@ RUN apt-get update && \
 # Install Python machine learning tools
 RUN conda install scikit-learn && \
     conda install pandas && \
-    conda install numpy 
+    conda install numpy && \
+    conda install py-xgboost
 
-RUN conda install --quiet --yes \
-    'boost' \
-    'lightgbm' \
-    'xgboost'  && \
-    conda clean -tipsy && \
-    fix-permissions $CONDA_DIR && \
-    fix-permissions /home/$NB_USER
+RUN pip install lightgbm
 
 # Install R machine learning tools
 RUN conda install -c r r-tidyverse && \
     conda install -c r r-tidyr && \
     conda install -c anaconda requests&& \   
     conda install -c conda-forge r-readr && \
-    conda install r-readr
+    conda install r-readr 
+    # conda install -c conda-forge r-ggally
 
 # Install docopt Python package
 RUN /opt/conda/bin/conda install -y -c anaconda docopt
 
+FROM rocker/tidyverse
+
+RUN Rscript -e "install.packages('GGally')"
+RUN Rscript -e "install.packages('cowplot')"
+
 # Put Anaconda Python in PATH
 ENV PATH="/opt/conda/bin:${PATH}"
+
+CMD ["/bin/bash"]
