@@ -6,8 +6,8 @@
 Usage: src/wrangle_df.py --input=<input> --output=<output>
 
 Options:
---input=<input>  Name of csv file to wrangle, must be within the /data directory.
---output=<output>  Name of clean dataset file to be saved in /data directory. 
+--input=<input>  Path (including filename) to data (which needs to be saved as a csv file).
+--output=<output>  Path (including filename) of the cleaned data (which needs to be saved as a csv file).
 '''
 
 import pandas as pd
@@ -19,7 +19,7 @@ opt = docopt(__doc__)
 
 def main(input, output):
     # download xls to pandas dataframe
-    df = pd.read_csv(f"./data/{input}")
+    df = pd.read_csv(input)
 
     # test that the data is a pandas data frame object
     assert isinstance(df, pd.core.frame.DataFrame)
@@ -77,7 +77,7 @@ def main(input, output):
     assert df['Approved'].isin([0, 1]).all()
 
     # Save cleaned data to file
-    df.to_csv(r"./data/%s" % (output), index=False)
+    df.to_csv(output, index=False)
 
 
 if __name__ == "__main__":

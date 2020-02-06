@@ -20,7 +20,7 @@ opt <- docopt(doc)
 
 main <- function(train, out_dir) {
   # load data
-  df <- read_csv("data/clean-train.csv")
+  df <- read_csv(train)
   categorical_cols = c('Sex',
                        'Married',
                        'BankCustomer',
