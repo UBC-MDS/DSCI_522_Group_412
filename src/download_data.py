@@ -26,7 +26,7 @@ def main(url, out_dir):
         request = requests.get(url)
         request.raise_for_status()
     except HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}\n')
+        print(f"HTTP error occurred: {http_err}")
         sys.exit()
     except Exception as err:
         print(f"Other error occurred: {err}")
