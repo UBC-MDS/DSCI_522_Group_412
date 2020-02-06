@@ -1,18 +1,6 @@
 Predicting Credit Card Approval
 ================
 
-  - [Summary](#summary)
-  - [Introduction](#introduction)
-  - [Methods](#methods)
-      - [Data](#data)
-      - [Analysis](#analysis)
-          - [Exploratory Analysis](#exploratory-analysis)
-          - [Model Analysis](#model-analysis)
-  - [Results and Discussion](#results-and-discussion)
-      - [Limitations and Future
-        Improvements](#limitations-and-future-improvements)
-  - [References](#references)
-
 # Summary
 
 In this analysis, we attempted to build a classification model based on
@@ -86,7 +74,7 @@ variables and the target variable
 **Observations from Figure 1:**
 
   - There is not high collinearity between any pair of predictors
-  - The dataset is well balanced, with a \~60:40 split between the two
+  - The dataset is well balanced, with a ~60:40 split between the two
     prediction classes
   - The boxplots show that many of the variables appear useful for
     predicting the correct class
@@ -102,7 +90,7 @@ the target variable. ![categorical plot](../img/categorical.png) Figure
     the response class
   - Certain categories in `EducationLevel` and `Ethnicity` are also
     differentiated between the two classes
-  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
+  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
   - Since the categorical variable names were added to increase
     readability based on intuition, conclusions drawn from their
     analysis are open to interpretation. Under the time constraints, we
@@ -138,11 +126,11 @@ time. Random forest outperformed xgboost and lgbm in terms of all three
 criterion with train accuracy = 0.996, test accuracy = 0.826 and run
 time = 0.2215 (sec).
 
-| X1 | random forest | xgboost |   lgbm |
-| -: | ------------: | ------: | -----: |
-|  0 |        0.9960 |  0.9090 | 0.9440 |
-|  1 |        0.8260 |  0.8480 | 0.8260 |
-|  2 |        0.2414 |  0.6329 | 0.1852 |
+| X1 | random forest | xgboost |  lgbm |
+| -: | ------------: | ------: | ----: |
+|  0 |        0.9960 |  0.9130 | 0.940 |
+|  1 |        0.8410 |  0.8410 | 0.812 |
+|  2 |        0.2842 |  0.7214 | 0.070 |
 
 With random forest, we obtained a very high value for train accuracy,
 which could be an indication that our model is overfitting. To tackle
@@ -153,19 +141,20 @@ model’s recall, precision, and auc score on the test data.
 
 | X1             |    result |
 | :------------- | --------: |
-| test accuracy  | 0.8333333 |
-| train accuracy | 0.9402174 |
-| test recall    | 0.8142857 |
-| test precision | 0.8507463 |
-| auc score      | 0.8985294 |
+| test accuracy  | 0.8550725 |
+| train accuracy | 0.9420290 |
+| test recall    | 0.8428571 |
+| test precision | 0.8676471 |
+| auc score      | 0.8974790 |
 
-Our model did well on the test data with auc score of \~0.89 and an
-overall accuracy of \~0.83. Though we obtained a high auc score and
+Our model did well on the test data with auc score of ~0.89 and an
+overall accuracy of ~0.83. Though we obtained a high auc score and
 accuracy, we obtained a low precision (=0.85). This could further be
 observed from the confusion matrix plot, where we have a high number of
 false positive cases (=23), i.e. predicting rejected application as
 successful. Given the implications for the customers and the banks, this
-model is not good enough to implement in industry.
+model is not good enough to implement in
+industry.
 
 <div class="figure">
 
@@ -198,7 +187,7 @@ following suggestions:
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references">
 
 <div id="ref-UCI">
 
