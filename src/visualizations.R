@@ -40,7 +40,7 @@ main <- function(train, out_dir) {
   # Plot categorical features
   plot_lst <- list()
   for (col in categorical_cols) {
-    g <- visualize_categorical(df, Approved, col)
+    g <- visualize_categorical(df, col)
     plot_lst[[col]] <- g
   }
   p1 <- plot_grid(plotlist = plot_lst)
@@ -66,21 +66,20 @@ main <- function(train, out_dir) {
 #' Plot categorical response variables vs. predictor
 #'
 #' @param data a dataframe
-#' @param response a column name
 #' @param predictor a column name
 #'
 #' @return a ggplot bar plot
 #'
 #' @examples
-#' visualize_categorical(df, Approved, col)
-visualize_categorical <- function(data, response, predictor) {
+#' visualize_categorical(df, col)
+visualize_categorical <- function(data, predictor) {
   ggplot(data, aes(x = !!sym(predictor))) +
   geom_bar() +
   labs(
     y = "Frequency",
     title = predictor) +
   theme_bw() +
-  facet_grid(cols = vars({{response}}))
+  facet_grid(cols = vars(Approved))
 }
 
 main(opt[["--train"]], opt[["--out_dir"]])
