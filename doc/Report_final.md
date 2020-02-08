@@ -1,6 +1,18 @@
 Predicting Credit Card Approval
 ================
 
+  - [Summary](#summary)
+  - [Introduction](#introduction)
+  - [Methods](#methods)
+      - [Data](#data)
+      - [Analysis](#analysis)
+          - [Exploratory Analysis](#exploratory-analysis)
+          - [Model Analysis](#model-analysis)
+  - [Results and Discussion](#results-and-discussion)
+      - [Limitations and Future
+        Improvements](#limitations-and-future-improvements)
+  - [References](#references)
+
 # Summary
 
 In this analysis, we attempted to build a classification model based on
@@ -8,14 +20,14 @@ decision trees models, combined with ensemble and boosting methods to
 predict whether a credit card application will be approved or rejected
 based on applicant’s personal information. Our final model performs
 pretty well on the test dataset. Our final model is **Random Forest**,
-and the **test accuracy is 0.83**, with **test recall = 0.81**, **test
-precision = 0.85**, and **test auc = 0.89**. There are **23 false
-positive** cases where applicants were not granted their credit card,
-but our model predicts that their application was approved. This
-indicates that there are still limitations on our model, and this kind
-of false positive cases could lead to unwanted credit default issues.
-Thus, we believe that there are still room for improvement for our
-prediction model before it can be launched.
+and the **test accuracy is 0.83**, with **test recall = 0.81** and
+**test auc = 0.89**. There are **23 false positive** cases where
+applicants were not granted their credit card, but our model predicts
+that their application was approved. This indicates that there are still
+limitations on our model, and this kind of false positive cases could
+lead to unwanted credit default issues. Thus, we believe that there are
+still room for improvement for our prediction model before it can be
+launched.
 
 # Introduction
 
@@ -74,48 +86,38 @@ variables and the target variable
 **Observations from Figure 1:**
 
   - There is not high collinearity between any pair of predictors
-  - The dataset is well balanced, with a ~60:40 split between the two
+  - The dataset is well balanced, with a \~60:40 split between the two
     prediction classes
   - The boxplots show that many of the variables appear useful for
     predicting the correct class
   - We will keep all the numerical variables while training models
 
-For categorical variables, we plotted bar plot of each predictor against
-the target variable. ![categorical plot](../img/categorical.png) Figure
-2 The correlation between categorical variables and the target variable
-
-**Observations from Figure 2:**
-
-  - `Employed` and `PriorDefault` appear to be very strong predictors of
-    the response class
-  - Certain categories in `EducationLevel` and `Ethnicity` are also
-    differentiated between the two classes
-  - Many others appear less predictive (e.g. `DriversLicense` and `Sex`)
-  - Since the categorical variable names were added to increase
-    readability based on intuition, conclusions drawn from their
-    analysis are open to interpretation. Under the time constraints, we
-    will not focus on feature selection/engineering.
+For categorical variables: Since the names were added to increase
+readability based on intuition, conclusions drawn from their analysis
+are open to interpretation. Under the time constraints, we will not
+focus on feature selection/engineering of the categorical variables.
 
 ### Model Analysis
 
-Since the results of our preliminary EDA were inconclusive, at this
-stage of our project, we decided to focus our efforts in improving the
-performance of our final model with respect to the ‘classification’
-task, instead of attempting to draw inferences with regards to feature
-importance. We decided to train tree based models, namely xgboost, lgbm
-and random forest classifier(s), due to their relatively good accuracy,
-robustness and ease of use with both categorical and random variables.
-After preliminary assessment, Random forest was used to build a
-classification model to predict whether a credit card application would
-be approved or rejected. All variables included in the original data
-set, were used to fit the model. The hyperparameter(s) namely no. of
-estimators, maximum depth and scoring criterion (Gini/Entropy) were
-chosen using 3 fold stratified cross validation. The R (R Core Team
-2019) and Python (Van Rossum and Drake 2009) programming languages, and
-the following R and Python packages were used to perform this analysis:
-knitr (Xie 2014), tidyverse (Wickham 2017), Pandas (McKinney 2010), and
-scikit-learn (Pedregosa et al. 2011). The code for this project can be
-found here: <https://github.com/UBC-MDS/DSCI_522_Group_412>.
+Under the confidentiality constraints and time limitations the results
+of our preliminary EDA were inconclusive. At this stage of our project,
+we decided to focus our efforts in improving the performance of our
+final model with respect to the ‘classification’ task, instead of
+attempting to draw inferences with regards to feature importance. We
+decided to train tree based models, namely xgboost, lgbm and random
+forest classifier(s), due to their relative good performance, robustness
+and ease of use with both categorical and random variables. After
+preliminary assessment, Random forest was used to build a classification
+model to predict whether a credit card application would be approved or
+rejected. All variables included in the original data set, were used to
+fit the model. The hyperparameter(s) namely no. of estimators, maximum
+depth and scoring criterion (Gini/Entropy) were chosen using 3 fold
+stratified cross validation. The R (R Core Team 2019) and Python (Van
+Rossum and Drake 2009) programming languages, and the following R and
+Python packages were used to perform this analysis: knitr (Xie 2014),
+tidyverse (Wickham 2017), Pandas (McKinney 2010), and scikit-learn
+(Pedregosa et al. 2011). The code for this project can be found here:
+<https://github.com/UBC-MDS/DSCI_522_Group_412>.
 
 # Results and Discussion
 
@@ -126,35 +128,31 @@ time. Random forest outperformed xgboost and lgbm in terms of all three
 criterion with train accuracy = 0.996, test accuracy = 0.826 and run
 time = 0.2215 (sec).
 
-| X1 | random forest | xgboost |  lgbm |
-| -: | ------------: | ------: | ----: |
-|  0 |        0.9960 |  0.9130 | 0.940 |
-|  1 |        0.8410 |  0.8410 | 0.812 |
-|  2 |        0.2842 |  0.7214 | 0.070 |
+| metric    | random forest | xgboost |  lgbm |
+| :-------- | ------------: | ------: | ----: |
+| train acc |         0.996 |   0.909 | 0.944 |
+| test acc  |         0.826 |   0.848 | 0.826 |
+| run time  |         0.501 |   0.825 | 0.194 |
 
 With random forest, we obtained a very high value for train accuracy,
 which could be an indication that our model is overfitting. To tackle
 this, we performed 3-fold stratified cross validation to perform
 hyperparameter optimisation. At this stage, to assess our model’s
 performance, apart from test and train accuracies we obtained the
-model’s recall, precision, and auc score on the test data.
+model’s recall and auc score on the test data.
 
-| X1             |    result |
-| :------------- | --------: |
-| test accuracy  | 0.8550725 |
-| train accuracy | 0.9420290 |
-| test recall    | 0.8428571 |
-| test precision | 0.8676471 |
-| auc score      | 0.8974790 |
+| Metric        | Performance on test data |
+| :------------ | -----------------------: |
+| test accuracy |                    0.833 |
+| test recall   |                    0.814 |
+| auc score     |                    0.899 |
 
-Our model did well on the test data with auc score of ~0.89 and an
-overall accuracy of ~0.83. Though we obtained a high auc score and
-accuracy, we obtained a low precision (=0.85). This could further be
-observed from the confusion matrix plot, where we have a high number of
-false positive cases (=23), i.e. predicting rejected application as
-successful. Given the implications for the customers and the banks, this
-model is not good enough to implement in
-industry.
+Our model did well on the test data with auc score of \~0.89 and an
+overall accuracy of \~0.85. Though we obtained a high auc score and
+accuracy, we still have a high number of false positive cases (=23),
+i.e. predicting rejected application as successful. Given the
+implications for the customers and the banks, this model is not good
+enough to implement in industry.
 
 <div class="figure">
 
@@ -187,7 +185,7 @@ following suggestions:
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 
 <div id="ref-UCI">
 
