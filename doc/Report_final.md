@@ -21,7 +21,7 @@ predict whether a credit card application will be approved or rejected
 based on applicant’s personal information. Our final model performs
 pretty well on the test dataset. Our final model is **Random Forest**,
 and the **test accuracy is 0.83**, with **test recall = 0.81** and
-**test auc = 0.89**. There are **20 false positive** cases where
+**test auc = 0.89**. There are **23 false positive** cases where
 applicants were not granted their credit card, but our model predicts
 that their application was approved. This indicates that there are still
 limitations on our model, and this kind of false positive cases could
@@ -130,9 +130,9 @@ time = 0.2215 (sec).
 
 | metric    | random forest | xgboost |  lgbm |
 | :-------- | ------------: | ------: | ----: |
-| train acc |         0.996 |   0.913 | 0.940 |
-| test acc  |         0.841 |   0.841 | 0.812 |
-| run time  |         0.284 |   0.721 | 0.070 |
+| train acc |         0.996 |   0.909 | 0.944 |
+| test acc  |         0.826 |   0.848 | 0.826 |
+| run time  |         0.501 |   0.825 | 0.194 |
 
 With random forest, we obtained a very high value for train accuracy,
 which could be an indication that our model is overfitting. To tackle
@@ -141,17 +141,15 @@ hyperparameter optimisation. At this stage, to assess our model’s
 performance, apart from test and train accuracies we obtained the
 model’s recall and auc score on the test data.
 
-| Metric         | Performance on test data |
-| :------------- | -----------------------: |
-| test accuracy  |                    0.855 |
-| train accuracy |                    0.942 |
-| test recall    |                    0.843 |
-| test precision |                    0.868 |
-| auc score      |                    0.897 |
+| Metric        | Performance on test data |
+| :------------ | -----------------------: |
+| test accuracy |                    0.833 |
+| test recall   |                    0.814 |
+| auc score     |                    0.899 |
 
 Our model did well on the test data with auc score of \~0.89 and an
 overall accuracy of \~0.85. Though we obtained a high auc score and
-accuracy, we still have a high number of false positive cases (=20),
+accuracy, we still have a high number of false positive cases (=23),
 i.e. predicting rejected application as successful. Given the
 implications for the customers and the banks, this model is not good
 enough to implement in industry.
@@ -177,7 +175,7 @@ following suggestions:
     with and without hyperparameter optimisation). This could be
     alleviated with more data which would enable us to perform training,
     validation and testing
-  - With the task in hand and the high stakes, the 20 misclassified
+  - With the task in hand and the high stakes, the 23 misclassified
     observation(s) need to be analyzed appropriately. We could compare
     these to the correct classifications (from both classes) to identify
     which feature(s) are driving the misclassification.

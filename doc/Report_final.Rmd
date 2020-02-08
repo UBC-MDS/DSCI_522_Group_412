@@ -16,7 +16,7 @@ library(tidyverse)
 In this analysis, we attempted to build a classification model based on
 decision trees models, combined with ensemble and boosting methods to predict whether a credit card application will be approved or rejected based on applicant’s personal information. Our final model performs pretty well on the test dataset.
 Our final model is **Random Forest**, and the **test accuracy is 0.83**,
-with **test recall = 0.81** and **test auc = 0.89**. There are **20 false positive** cases where applicants were not granted their credit card, but our model predicts that their application was approved. This indicates that there are still limitations on our model, and this kind of false positive cases could lead to unwanted credit default issues. Thus, we believe that there are still room for improvement for our prediction model before it can be launched. 
+with **test recall = 0.81** and **test auc = 0.89**. There are **23 false positive** cases where applicants were not granted their credit card, but our model predicts that their application was approved. This indicates that there are still limitations on our model, and this kind of false positive cases could lead to unwanted credit default issues. Thus, we believe that there are still room for improvement for our prediction model before it can be launched. 
 
 # Introduction
 Credit card approval is an important activity for banks and other
@@ -97,7 +97,7 @@ df <- df %>%
 kable(df)
 ```
 
-Our model did well on the test data with auc score of ~0.89 and an overall accuracy of ~0.85. Though we obtained a high auc score and accuracy, we still have a high number of false positive cases (=20), i.e. predicting rejected application as successful. Given the implications for the customers and the banks, this model is not good enough to implement in industry.
+Our model did well on the test data with auc score of ~0.89 and an overall accuracy of ~0.85. Though we obtained a high auc score and accuracy, we still have a high number of false positive cases (=23), i.e. predicting rejected application as successful. Given the implications for the customers and the banks, this model is not good enough to implement in industry.
 
 ```{r confusion matrix, echo=FALSE, fig.cap="Figure 3. Confusion matrix for final model on test data. ", out.width = '60%'}
 knitr::include_graphics("../results/roc.png")
@@ -107,7 +107,7 @@ knitr::include_graphics("../results/roc.png")
 To further improve the model's performance in the future, we have the following suggestions:
 
 - We observed overfitting (i.e. extremely high training accuracies with and without hyperparameter optimisation). This could be alleviated with more data which would enable us to perform training, validation and testing
-- With the task in hand and the high stakes, the 20 misclassified observation(s) need to be analyzed appropriately. We could compare these to the correct classifications (from both classes) to identify which feature(s) are driving the misclassification. 
+- With the task in hand and the high stakes, the 23 misclassified observation(s) need to be analyzed appropriately. We could compare these to the correct classifications (from both classes) to identify which feature(s) are driving the misclassification. 
 - Additionally, with the help of domain experts, feature engineering could be used to improve the model's precision and reduce the number of false positives.
 
 # References
