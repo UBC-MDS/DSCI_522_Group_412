@@ -29,6 +29,36 @@ The final report can be found [here](https://github.com/UBC-MDS/DSCI_522_Group_4
 
 ## Usage
 
+There are two ways to run this analysis:
+
+#### 1. Use Docker
+
+*Note: the following instructions depend on running this in a unix shell (e.g., terminal or Git Bash). Windows users may have to use Git Bash, set Docker to use Linux containers, and have shared their drives with Docker.*
+
+To replicate the analysis, please follow the instruction:
+
+1. Install [Docker](https://www.docker.com/get-started)
+2. Clone this GitHub repository
+3. Download the docker image using the following command at the command line/terminal:
+
+```
+docker pull yuejiang001/dsci_522_group_412_credit_predictor:v1.0
+```
+
+4. To replicate the analysis, navigate to the root directory of this project using the command line/terminal, and run the following command:
+
+```
+docker run --rm -v /$(pwd):/home/DSCI_522_Group_412 yuejiang001/dsci_522_group_412_credit_predictor:v1.0 make -C 'home/DSCI_522_Group_412' all
+```
+
+5. To reset this repository to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
+
+```
+docker run --rm -v /$(pwd):/home/DSCI_522_Group_412 yuejiang001/dsci_522_group_412_credit_predictor:v1.0 make -C 'home/DSCI_522_Group_412' clean
+```
+
+#### 2. Without using Docker
+
 To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
 ```
@@ -49,7 +79,6 @@ Python 3.7.3 and Python packages:
 - docopt==0.6.2     
 - requests==2.22.0     
 - pandas==0.24.2  
-- pandas-profiling 2.3.0
 - numpy==1.17.2
 - scikit-learn==0.22.1 
 - lightgbm==2.3.2
