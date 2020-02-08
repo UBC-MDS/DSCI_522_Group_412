@@ -48,13 +48,13 @@ docker pull yuejiang001/dsci_522_group_412_credit_predictor:v1.0
 4. To replicate the analysis, navigate to the root directory of this project using the command line/terminal, and run the following command:
 
 ```
-docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/DSCI_522_Group_412 yuejiang001/dsci_522_group_412_credit_predictor:v1.0 make -C 'home/DSCI_522_Group_412' all
+docker run --rm -v /$(pwd):/home/DSCI_522_Group_412 yuejiang001/dsci_522_group_412_credit_predictor:v1.0 make -C 'home/DSCI_522_Group_412' all
 ```
 
 5. To reset this repository to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
 
 ```
-docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/DSCI_522_Group_412 yuejiang001/dsci_522_group_412_credit_predictor:v1.0 make -C 'home/DSCI_522_Group_412' clean
+docker run --rm -v /$(pwd):/home/DSCI_522_Group_412 yuejiang001/dsci_522_group_412_credit_predictor:v1.0 make -C 'home/DSCI_522_Group_412' clean
 ```
 
 #### 2. Without using Docker
