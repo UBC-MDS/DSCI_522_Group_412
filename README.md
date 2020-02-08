@@ -33,7 +33,7 @@ There are two ways to run this analysis:
 
 #### 1. Use Docker
 
-*Note: the following instructions depends on running this in a unix shell (e.g., terminal or Git Bash). Windows users may have to use Git Bash, set Docker to use Linux containers, and have shared their drives with Docker.*
+*Note: the following instructions depend on running this in a unix shell (e.g., terminal or Git Bash). Windows users may have to use Git Bash, set Docker to use Linux containers, and have shared their drives with Docker.*
 
 To replicate the analysis, please follow the instruction:
 
