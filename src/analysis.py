@@ -142,8 +142,8 @@ def main (input1,input2,output):
     test_recall = recall_score(y_test, test_predictions)
     test_precision = precision_score(y_test, test_predictions)
     auc_score = roc_auc_score(y_test, best_model.predict_proba(X_test)[:, 1])
-    accuracies_df = pd.DataFrame(index=['test accuracy', 'train accuracy', 'test recall', 'test precision', 'auc score'], data={
-        'result': [test_accuracy, train_accuracy, test_recall, test_precision, auc_score]
+    accuracies_df = pd.DataFrame(index=['test accuracy', 'test recall', 'auc score'], data={
+        'result': [test_accuracy, test_recall, auc_score]
     })
     accuracies_df.to_csv(output + "accuracy_report.csv")
 
